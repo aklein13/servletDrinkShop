@@ -32,30 +32,25 @@ public class DataServlet extends HttpServlet {
 
         PrintWriter out = response.getWriter();
         
-        //imie
         if(request.getParameter("name") != "") {
         	boolean checkImie = imieCheck(request.getParameter("name"));
         	if(!checkImie) errors.add("Imie moze zawierac tylko litery!");
         }else {
         	errors.add("Brak podanego imienia!");
         }
-        //hobby
         if (request.getParameter("hobby") == null) {
         	errors.add("Brak wybranego hobby!");
         }
-        //opis
         if (request.getParameter("opis") == null) {
         	errors.add("Brak wpisanego opisu!");
         }
-        //plec
+
         if (request.getParameter("gender") == null) {
         	errors.add("Brak wybranej plci!");
         }
-        //auto
         if (request.getParameterValues("car") == null) {
         	errors.add("Brak wybranego auta/aut!");
         }
-        //data urodzenia
         if(request.getParameter("bday") != "") {
         	boolean checkData = dataCheck(request.getParameter("bday"));
         	if(!checkData) errors.add("Wymagany format daty to: DD-MM-RRRR!");
@@ -63,7 +58,6 @@ public class DataServlet extends HttpServlet {
         	errors.add("Brak podanej daty!");
         }
         
-        //test czy sa jakies errory
         if(errors.size() == 0) {
         	//lista hobby
             String selectedHobby = "";
