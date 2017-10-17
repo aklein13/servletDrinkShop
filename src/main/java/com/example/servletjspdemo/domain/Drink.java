@@ -9,22 +9,22 @@ public class Drink {
 		super();
 	}
 	
-	public Drink(String firstName, int yob) {
+	public Drink(String name, int price) {
 		super();
-		this.name = firstName;
-		this.price = yob;
+		this.name = name;
+		this.price = price;
 	}
 
 	public String getName() {
 		return name;
 	}
-	public void setName(String firstName) {
-		this.name = firstName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public int getPrice() {
 		return price;
 	}
-	public void setPrice(int yob) {
-		this.price = yob;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 }

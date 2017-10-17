@@ -9,12 +9,12 @@ public class StorageService {
 	
 	private List<Drink> db = new ArrayList<Drink>();
 	
-	public void add(Drink person){
-		Drink newPerson = new Drink(person.getName(), person.getPrice());
+	public void add(Drink drink){
+		Drink newPerson = new Drink(drink.getName(), drink.getPrice());
 		db.add(newPerson);
 	}
 	
-	public List<Drink> getAllPersons(){
+	public List<Drink> getAllDrinks(){
 		return db;
 	}
 
