@@ -3,18 +3,18 @@ package com.example.servletjspdemo.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.servletjspdemo.domain.Person;
+import com.example.servletjspdemo.domain.Drink;
 
 public class StorageService {
 	
-	private List<Person> db = new ArrayList<Person>();
+	private List<Drink> db = new ArrayList<Drink>();
 	
-	public void add(Person person){
-		Person newPerson = new Person(person.getFirstName(), person.getYob());
+	public void add(Drink person){
+		Drink newPerson = new Drink(person.getName(), person.getPrice());
 		db.add(newPerson);
 	}
 	
-	public List<Person> getAllPersons(){
+	public List<Drink> getAllPersons(){
 		return db;
 	}
 

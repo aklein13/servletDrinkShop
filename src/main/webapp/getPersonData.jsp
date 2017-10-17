@@ -9,12 +9,12 @@
 <body>
 
 <jsp:useBean id="storage" class="com.example.servletjspdemo.service.StorageService" scope="application" />
-<jsp:useBean id="person" class="com.example.servletjspdemo.domain.Person" scope="session" />
+<jsp:useBean id="drink" class="com.example.servletjspdemo.domain.Drink" scope="session" />
 
 <form action="addPerson.jsp">
 
-  First name :<input type="text" name="firstName" value="${person.firstName}" /><br />
-  Year of birth :<input type="text"  name="yob" value="${person.yob}" /><br />
+  First name :<input type="text" name="firstName" value="${drink.firstName}" /><br />
+  Year of birth :<input type="text"  name="yob" value="${drink.yob}" /><br />
   <input type="submit" value=" OK ">
   
 </form>
