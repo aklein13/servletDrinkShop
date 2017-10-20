@@ -11,6 +11,6 @@
         <h2>Drink Shop</h2>
         <p><a href="hello">See greetings from servlet</a></p>
         <p><a href="form">Fill a form</a></p>
-        <p><a href="getPersonData.jsp">Fill a Person form</a></p>
+        <p><a href="addDrink.jsp">Add a drink</a></p>
     </body>
 </html>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Added a drink</title>
 </head>
 <body>
 <jsp:useBean id="drink" class="com.example.servletjspdemo.domain.Drink" scope="session" />
@@ -17,11 +17,12 @@
   storage.add(drink);
 %>
 
-<p>Following person has been added to storage: </p>
-<p>First name: ${person.firstName} </p>
-<p>Year of birth: <jsp:getProperty name="drink" property="yob"></jsp:getProperty></p>
+<p>Following drink has been added to shop: </p>
+<p>Name: ${drink.name} </p>
+<p>Price: ${drink.price}</p>
+<p>Amount: ${drink.amount}</p>
 <p>
-  <a href="showAllPersons.jsp">Show all persons</a>
+  <a href="showAllDrinks.jsp">Show all drinks</a>
 </p>
 </body>
 </html>

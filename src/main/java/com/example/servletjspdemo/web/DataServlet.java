@@ -2,8 +2,6 @@ package com.example.servletjspdemo.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
@@ -12,7 +10,6 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-import javax.print.AttributeException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,95 +26,78 @@ public class DataServlet extends HttpServlet {
             throws ServletException, IOException {
         List<String> errors = new ArrayList<String>();
         response.setContentType("text/html");
-
         PrintWriter out = response.getWriter();
-        
-        if(request.getParameter("name") != "") {
-        	boolean checkImie = imieCheck(request.getParameter("name"));
-        	if(!checkImie) errors.add("Imie moze zawierac tylko litery!");
-        }else {
-        	errors.add("Brak podanego imienia!");
+        if (request.getParameter("name") != "") {
+            boolean checkName = nameCheck(request.getParameter("name"));
+            if (!checkName) errors.add("Imie moze zawierac tylko litery!");
+        } else {
+            errors.add("Brak podanego imienia!");
         }
         if (request.getParameter("hobby") == null) {
-        	errors.add("Brak wybranego hobby!");
+            errors.add("Brak wybranego hobby!");
         }
         if (request.getParameter("opis") == null) {
-        	errors.add("Brak wpisanego opisu!");
+            errors.add("Brak wpisanego opisu!");
         }
-
         if (request.getParameter("gender") == null) {
-        	errors.add("Brak wybranej plci!");
+            errors.add("Brak wybranej plci!");
         }
         if (request.getParameterValues("car") == null) {
-        	errors.add("Brak wybranego auta/aut!");
+            errors.add("Brak wybranego auta/aut!");
         }
-        if(request.getParameter("bday") != "") {
-        	boolean checkData = dataCheck(request.getParameter("bday"));
-        	if(!checkData) errors.add("Wymagany format daty to: DD-MM-RRRR!");
-        }else {
-        	errors.add("Brak podanej daty!");
+        if (request.getParameter("bday") != "") {
+            boolean checkData = dateCheck(request.getParameter("bday"));
+            if (!checkData) errors.add("Wymagany format daty to: DD-MM-RRRR!");
+        } else {
+            errors.add("Brak podanej daty!");
         }
-        
-        if(errors.size() == 0) {
-        	//lista hobby
+
+        if (errors.size() == 0) {
             String selectedHobby = "";
             for (String hobby : request.getParameterValues("hobby")) {
                 selectedHobby += hobby + " ";
             }
-            //lista aut
             String selectedCars = "";
             for (String hobby : request.getParameterValues("car")) {
-            	selectedCars += hobby + " ";
-            }        
-            
-            //zamiana string to date
-        	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        	LocalDate date = LocalDate.parse(request.getParameter("bday"), formatter);
-        	LocalDate now = LocalDate.now();
-        	//obliczanie wieku
-            int wiek = Period.between(date, now).getYears();
-            String peln ="";
-            if(wiek>=18) {
-            	peln="tak";
+                selectedCars += hobby + " ";
             }
-            else {
-            	peln="nie";
-            }
-            //wypis html
-                out.println("<html><body><h2>Your data</h2>" +
-					 "<p>Imie: " + request.getParameter("name") + "<br />" +
-					 "<p>Hobby: " + selectedHobby + "<br />" +
-					 "<p>Opis: " + request.getParameter("opis") + "<br />" +
-					 "<p>Plec: " + request.getParameter("gender") + "<br />" +
-					 "<p>Ulubione auta: " + selectedCars + "<br />" +
-					 "<p>Data urodzenia " + date + "<br />" +
-					 "<p>Wiek: " + wiek + "<br />" +
-					 "<p>Czy jestem pelnoletni?: " + peln + "<br />" +
-					 "</body></html>");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            LocalDate date = LocalDate.parse(request.getParameter("bday"), formatter);
+            LocalDate now = LocalDate.now();
+            int age = Period.between(date, now).getYears();
+            String adult = age >= 18 ? "tak" : "nie";
+            out.println("<html><body><h2>Twoje dane:</h2>" +
+                    "<p>Imie: " + request.getParameter("name") + "<br />" +
+                    "<p>Hobby: " + selectedHobby + "<br />" +
+                    "<p>Opis: " + request.getParameter("opis") + "<br />" +
+                    "<p>Plec: " + request.getParameter("gender") + "<br />" +
+                    "<p>Ulubione auta: " + selectedCars + "<br />" +
+                    "<p>Data urodzenia " + date + "<br />" +
+                    "<p>Wiek: " + age + "<br />" +
+                    "<p>Czy jestem pelnoletni?: " + adult + "<br />" +
+                    "</body></html>");
             out.close();
-        }else {
-            for(String element : errors) {
-          		out.print(element + "<br />");
-          }
+        } else {
+            for (String element : errors) {
+                out.print(element + "<br />");
+            }
         }
     }
-    
-    boolean imieCheck(String imie) {
-    	Pattern p = Pattern.compile("[0-9]");
-    	Matcher m = p.matcher(imie);
-    	if(m.find()) {
-    	    return false;
-    	}
-    	else return true;
+
+    boolean nameCheck(String imie) {
+        Pattern p = Pattern.compile("[0-9]");
+        Matcher m = p.matcher(imie);
+        if (m.find()) {
+            return false;
+        } else return true;
     }
-    
-    boolean dataCheck(String data) {
-    	Pattern p = Pattern.compile("[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]");
-    	Matcher m = p.matcher(data);
-    	if(m.find()) {
-    	    return true;
-    	}
-    	else return false;
+
+    boolean dateCheck(String data) {
+        Pattern p = Pattern.compile("[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]");
+        Matcher m = p.matcher(data);
+        if (m.find()) {
+            return true;
+        } else return false;
     }
 
 }

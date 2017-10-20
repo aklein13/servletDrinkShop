@@ -28,15 +28,15 @@ public class FormServlet extends HttpServlet {
                 "<input type='checkbox' name='hobby' value='bicycle'>I like riding a bicycle<br />" +
                 "<input type='checkbox' name='hobby' value='tv'>I like watching TV<br />" +
                 "Dodaj cos od siebie: <br /><textarea name='opis' rows='4' cols='50'></textarea><br />" +
-                "Podaj plec:<br /><input type='radio' name='gender' value='male'> Mezczyzna<br/>"+
-                "<input type='radio' name='gender' value='female'> Kobieta<br/>"+
+                "Podaj plec:<br /><input type='radio' name='gender' value='male'> Mezczyzna<br/>" +
+                "<input type='radio' name='gender' value='female'> Kobieta<br/>" +
                 "Twoje ulubione auto to:<br /> <select name='car' multiple>\n" +
-                        "  <option value='volvo'>Volvo</option>\n" +
-                        "  <option value='saab'>Saab</option>\n" +
-                        "  <option value='mercedes'>Mercedes</option>\n" +
-                        "  <option value='audi'>Audi</option>\n" +
-                        "</select><br/>" +
-                "<br />Data urodzenia:<input type='text' name='bday' />"+
+                "  <option value='volvo'>Volvo</option>\n" +
+                "  <option value='saab'>Saab</option>\n" +
+                "  <option value='mercedes'>Mercedes</option>\n" +
+                "  <option value='audi'>Audi</option>\n" +
+                "</select><br/>" +
+                "<br />Data urodzenia:<input type='text' name='bday' />" +
                 "<br /><input type='submit' value=' Wyslij ' />" +
                 "</form>" +
                 "</body></html>");
