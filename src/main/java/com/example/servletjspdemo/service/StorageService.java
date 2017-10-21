@@ -10,7 +10,14 @@ public class StorageService {
     private List<Drink> db = new ArrayList<Drink>();
 
     public void add(Drink drink) {
-        Drink newDrink = new Drink(drink.getName(), drink.getPrice(), drink.getAmount());
+        String drinkName = drink.getName();
+        for (Drink drinkCheck : db) {
+            if (drinkCheck.getName().equals(drinkName)) {
+                System.out.println("There already is a drink: " + drinkName);
+                return;
+            }
+        }
+        Drink newDrink = new Drink(drinkName, drink.getPrice(), drink.getAmount());
         db.add(newDrink);
     }
 
@@ -18,8 +25,15 @@ public class StorageService {
         return db;
     }
 
-    public int drinksCount() {
-        return db.size();
+    // names are unique
+    public void buyDrink(String name) {
+        for (Drink drink : db) {
+            if (drink.getName().equals(name)) {
+                drink.buyDrink();
+                System.out.println("Bought " + name);
+                return;
+            }
+        }
     }
 
     public void generateDrinks() {

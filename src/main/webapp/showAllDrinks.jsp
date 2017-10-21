@@ -18,7 +18,7 @@
             out.print("<p>Name: " + drink.getName() + "; Price: " + drink.getPrice() + "; Amount: " + amount);
             if (amount > 0) {
 //                out.print(" <a href='buyDrink.jsp'><button>Buy</button></a>");
-                out.print(" <button type='submit' value='" + drink + "' name='buy'>Buy</button>");
+                out.print(" <button type='submit' value='" + drink.getName() + "' name='buy'>Buy</button>");
             } else {
                 out.print(" <button disabled>Out of stock</button>");
             }
@@ -33,6 +33,9 @@
 <%
     out.println(session.getAttribute("basket"));
 %>
-
+<%--<h3>Total price:</h3>--%>
+<%--<%--%>
+    <%--out.println(session.getAttribute("totalPrice"));--%>
+<%--%>--%>
 </body>
 </html>

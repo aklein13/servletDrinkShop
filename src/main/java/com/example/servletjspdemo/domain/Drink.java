@@ -16,6 +16,7 @@ public class Drink {
 
     public synchronized boolean buyDrink() {
         if (this.amount > 0) {
+            System.out.println("kupionjo " + this.amount + this.name);
             this.amount -= 1;
             return true;
         }
