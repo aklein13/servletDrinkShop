@@ -45,4 +45,8 @@ public class Drink {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 }

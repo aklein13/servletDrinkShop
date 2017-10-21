@@ -10,23 +10,28 @@
 <body>
 <h1>Drink list</h1>
 <jsp:useBean id="storage" class="com.example.servletjspdemo.service.StorageService" scope="application"/>
-<%
-    int amount;
-    for (Drink drink : storage.getAllDrinks()) {
-        amount = drink.getAmount();
-        out.print("<p>Name: " + drink.getName() + "; Price: " + drink.getPrice() + "; Amount: " + amount);
-        if (amount > 0) {
-            out.print(" <a href='buyDrink.jsp'><button>Buy</button></a>" );
+<form action="buyDrink.jsp">
+    <%
+        int amount;
+        for (Drink drink : storage.getAllDrinks()) {
+            amount = drink.getAmount();
+            out.print("<p>Name: " + drink.getName() + "; Price: " + drink.getPrice() + "; Amount: " + amount);
+            if (amount > 0) {
+//                out.print(" <a href='buyDrink.jsp'><button>Buy</button></a>");
+                out.print(" <button type='submit' value='" + drink + "' name='buy'>Buy</button>");
+            } else {
+                out.print(" <button disabled>Out of stock</button>");
+            }
+            out.println("</p>");
         }
-        out.println("</p>");
-    }
-%>
+    %>
+</form>
 <p>
     <a href="addDrink.jsp">Add another drink</a>
 </p>
-<h2>Your bucket:</h2>
+<h2>Your basket:</h2>
 <%
-    out.println(session.getAttribute("bucket"));
+    out.println(session.getAttribute("basket"));
 %>
 
 </body>
