@@ -24,6 +24,9 @@
     }
     for (String aDrinkToBuy : drinkToBuy) {
         Double price = storage.buyDrink(aDrinkToBuy);
+        if(price == 0.0){
+            continue;
+        }
         totalPrice += price;
         basket += aDrinkToBuy + " " + price + " zł<br/>";
         out.println("<h2>You bought " + aDrinkToBuy + "</h2>");

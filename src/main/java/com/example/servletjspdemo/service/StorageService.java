@@ -29,6 +29,9 @@ public class StorageService {
     public double buyDrink(String name) {
         for (Drink drink : db) {
             if (drink.getName().equals(name)) {
+                if(drink.getAmount() == 0){
+                    return 0.0;
+                }
                 drink.buyDrink();
                 System.out.println("Bought " + name);
                 return drink.getPrice();
