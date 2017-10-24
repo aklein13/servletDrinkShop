@@ -23,20 +23,26 @@
         basket = "";
     }
     for (String aDrinkToBuy : drinkToBuy) {
-        Double price = storage.buyDrink(aDrinkToBuy);
-        if(price == 0.0){
+        int amount = Integer.parseInt(request.getParameter(aDrinkToBuy));
+        if (amount < 1){
+            out.println("<h2>Can't buy " + aDrinkToBuy + ", you tried to buy more then in stock or 0</h2>");
             continue;
         }
-        totalPrice += price;
-        basket += aDrinkToBuy + " " + price + " zł<br/>";
-        out.println("<h2>You bought " + aDrinkToBuy + "</h2>");
+        Double price = storage.buyDrink(aDrinkToBuy, amount);
+        if(price == 0.0){
+            out.println("<h2>Can't buy " + aDrinkToBuy + ", you tried to buy more then in stock</h2>");
+            continue;
+        }
+        totalPrice += amount * price;
+        basket += amount + " x " + aDrinkToBuy + " " + amount * price + " zł<br/>";
+        out.println("<h2>You bought " + amount + " x " + aDrinkToBuy + "</h2>");
     }
     session.setAttribute("basket", basket);
     session.setAttribute("totalPrice", totalPrice);
 %>
 
 <p>
-    <a href="showAllDrinks.jsp">Show all drinks</a>
+    <a href="index.jsp">Show all drinks</a>
 </p>
 </body>
 </html>

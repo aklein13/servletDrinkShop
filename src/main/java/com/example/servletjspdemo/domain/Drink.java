@@ -14,8 +14,8 @@ public class Drink {
         return amount;
     }
 
-    public synchronized void buyDrink() {
-        if (this.amount > 0) {
+    public synchronized void buyDrink(int amount) {
+        if (this.amount > 0 && this.amount >= amount) {
             this.amount -= 1;
         }
     }
