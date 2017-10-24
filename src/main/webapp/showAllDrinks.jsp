@@ -16,7 +16,7 @@
         int amount;
         for (Drink drink : storage.getAllDrinks()) {
             amount = drink.getAmount();
-            out.print("<p>Name: " + drink.getName() + "; Price: " + drink.getPrice() + "; Available: " + amount);
+            out.print("<p>Name: " + drink.getName() + " Price: " + drink.getPrice() + "zł Available: " + amount);
             if (amount > 0) {
                 out.print(" <input type='checkbox' value='" + drink.getName() + "' name='buy'/>");
             } else {
@@ -28,13 +28,14 @@
     <button type="submit" name="buydrinks" value="Buy">Buy checked drinks</button>
 </form>
 <p>
-    <a href="addDrink.jsp">Add another drink</a>
+    <%--<a href="addDrink.jsp">Add another drink</a>--%>
 </p>
 <h2>Your basket:</h2>
 <%
     String basket = (String) session.getAttribute("basket");
     if(basket != null){
         out.println(basket);
+        out.println("<br/>Total price: " + session.getAttribute("totalPrice") + "zł");
     }
     else{
         out.println("Your basket is empty");

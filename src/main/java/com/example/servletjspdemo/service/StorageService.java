@@ -26,19 +26,20 @@ public class StorageService {
     }
 
     // names are unique
-    public void buyDrink(String name) {
+    public double buyDrink(String name) {
         for (Drink drink : db) {
             if (drink.getName().equals(name)) {
                 drink.buyDrink();
                 System.out.println("Bought " + name);
-                return;
+                return drink.getPrice();
             }
         }
+        return 0.0;
     }
 
     public void generateDrinks() {
         if (db.size() == 0) {
-            Drink newDrink1 = new Drink("cola", 5, 6);
+            Drink newDrink1 = new Drink("cola", 5.5, 6);
             Drink newDrink2 = new Drink("fanta", 15, 15);
             Drink newDrink3 = new Drink("sprite", 10, 2);
             db.add(newDrink1);

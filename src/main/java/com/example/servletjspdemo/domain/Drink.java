@@ -3,7 +3,7 @@ package com.example.servletjspdemo.domain;
 public class Drink {
 
     private String name = "";
-    private int price = 1;
+    private double price = 1;
     private int amount = 10;
 
     public Drink() {
@@ -14,17 +14,13 @@ public class Drink {
         return amount;
     }
 
-    public synchronized boolean buyDrink() {
+    public synchronized void buyDrink() {
         if (this.amount > 0) {
-            System.out.println("kupionjo " + this.amount + this.name);
             this.amount -= 1;
-            return true;
         }
-        System.out.println("Dany napój się skończył");
-        return false;
     }
 
-    public Drink(String name, int price, int amount) {
+    public Drink(String name, double price, int amount) {
         super();
         this.name = name;
         this.price = price;
@@ -39,11 +35,11 @@ public class Drink {
         this.name = name;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
