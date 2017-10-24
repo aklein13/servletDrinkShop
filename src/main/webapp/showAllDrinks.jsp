@@ -12,30 +12,33 @@
 <jsp:useBean id="storage" class="com.example.servletjspdemo.service.StorageService" scope="application"/>
 <form action="buyDrink.jsp">
     <%
+        storage.generateDrinks();
         int amount;
         for (Drink drink : storage.getAllDrinks()) {
             amount = drink.getAmount();
-            out.print("<p>Name: " + drink.getName() + "; Price: " + drink.getPrice() + "; Amount: " + amount);
+            out.print("<p>Name: " + drink.getName() + "; Price: " + drink.getPrice() + "; Available: " + amount);
             if (amount > 0) {
-//                out.print(" <a href='buyDrink.jsp'><button>Buy</button></a>");
-                out.print(" <button type='submit' value='" + drink.getName() + "' name='buy'>Buy</button>");
+                out.print(" <input type='checkbox' value='" + drink.getName() + "' name='buy'/>");
             } else {
                 out.print(" <button disabled>Out of stock</button>");
             }
             out.println("</p>");
         }
     %>
+    <button type="submit" name="buydrinks" value="Buy">Buy checked drinks</button>
 </form>
 <p>
     <a href="addDrink.jsp">Add another drink</a>
 </p>
 <h2>Your basket:</h2>
 <%
-    out.println(session.getAttribute("basket"));
+    String basket = (String) session.getAttribute("basket");
+    if(basket != null){
+        out.println(basket);
+    }
+    else{
+        out.println("Your basket is empty");
+    }
 %>
-<%--<h3>Total price:</h3>--%>
-<%--<%--%>
-    <%--out.println(session.getAttribute("totalPrice"));--%>
-<%--%>--%>
 </body>
 </html>

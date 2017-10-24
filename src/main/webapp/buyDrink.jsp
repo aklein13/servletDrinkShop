@@ -13,15 +13,17 @@
 <jsp:useBean id="storage" class="com.example.servletjspdemo.service.StorageService" scope="application" />
 
 <%
-  String drinkToBuy = request.getParameter("buy");
-  String basket = (String) session.getAttribute("basket");
-  if(basket == null){
-      basket = "";
-  }
-  basket += drinkToBuy + "<br/>";
-  session.setAttribute("basket", basket);
-  storage.buyDrink(drinkToBuy);
-  out.println("<h2>Kupiłeś " + drinkToBuy + "</h2>");
+  String drinkToBuy[]= request.getParameterValues("buy");
+    for (String aDrinkToBuy : drinkToBuy) {
+        String basket = (String) session.getAttribute("basket");
+        if (basket == null) {
+            basket = "";
+        }
+        basket += aDrinkToBuy + "<br/>";
+        session.setAttribute("basket", basket);
+        storage.buyDrink(aDrinkToBuy);
+        out.println("<h2>You bought " + aDrinkToBuy + "</h2>");
+    }
 %>
 
 <p>
