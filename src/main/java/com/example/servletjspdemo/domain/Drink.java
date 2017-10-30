@@ -16,7 +16,7 @@ public class Drink {
 
     public synchronized void buyDrink(int amount) {
         if (this.amount > 0 && this.amount >= amount) {
-            this.amount -= 1;
+            this.amount -= amount;
         }
     }
 
