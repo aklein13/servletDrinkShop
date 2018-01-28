@@ -31,4 +31,5 @@ test-output
 # switch to regexp syntax.
 #  syntax: regexp
 #  ^\.pc/
-
+.idea/
+lib/
